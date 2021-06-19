@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Mike Wessel" />
+
+
+<title>Trends</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="site_libs/bootstrap-3.3.7/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.7/bootstrap.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="site_libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="site_libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PC Trends 2021</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Trends.html">Trends</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Trends</h1>
+<h4 class="author">Mike Wessel</h4>
+<h4 class="date">6/19/2021</h4>
+
+</div>
+
+
+<div id="note-this-is-an-experiental-test-site-and-is-not-to-be-interpreted-as-a-final-result" class="section level2">
+<h2>NOTE: THIS IS AN EXPERIENTAL TEST SITE AND IS NOT TO BE INTERPRETED AS A FINAL RESULT</h2>
+</div>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>These maps display results of Seasonal Kendall Tau trend test with autocorrelation on Pinellas County water quality data and uses the Benjamini and Hochberg method to adjust for multiple comparions within each water quality parameter set.</p>
+<pre><code>## [1] &quot;C:/Wessel/Git_projects/PCtrends/newPC&quot;</code></pre>
+</div>
+<div id="total-nitrogen-map-results" class="section level2">
+<h2>Total Nitrogen Map Results</h2>
+<div id="htmlwidget-460fc3bac4540c9d289d" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-460fc3bac4540c9d289d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[28.157197,28.174032,28.140872,28.086325,28.068168,28.068488,28.033754,28.046586,28.0373,28.020439,28.014891,27.996813,28.002573,27.979585,27.974373,27.990174,27.943531,27.940683,27.971475,27.928133,27.950451,27.940403,27.938397,27.927122,27.923225,27.915657,27.907501,27.839032,27.911902,27.871178,27.850126,27.892915,27.891048,27.91596,27.880067,27.824248,27.80992,27.813779,27.803728,28.00106672,27.9442479,27.9269901,27.89513168,27.85753274,27.80925792,27.72962857,28.11835125,27.84209776,27.87825759,27.85242489,28.11080443,28.01435705,27.93297393,27.82897097,27.82634241,27.79184557,27.73816426,27.67377096],[-82.757037,-82.723492,-82.639453,-82.694148,-82.722861,-82.768836,-82.780066,-82.759151,-82.703731,-82.690019,-82.698876,-82.694027,-82.721708,-82.69525,-82.71359,-82.783999,-82.805969,-82.801349,-82.78153,-82.745983,-82.754343,-82.759796,-82.750888,-82.738439,-82.717813,-82.725143,-82.676053,-82.752199,-82.700352,-82.729363,-82.772943,-82.807484,-82.824898,-82.808897,-82.809457,-82.731661,-82.720528,-82.695728,-82.72412,-82.67290744,-82.70291824,-82.65651787,-82.61283014,-82.58965034,-82.59338409,-82.62286673,-82.7226789,-82.60918525,-82.77575324,-82.78080972,-82.80745512,-82.80655922,-82.82751687,-82.8191972,-82.76524298,-82.77017169,-82.73051748,-82.70547245],{"icon":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.1":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor":"blue","markerColor.1":"blue","icon.2":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.2":"blue","icon.3":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.4":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.3":"blue","icon.5":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.6":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.7":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.4":"blue","icon.8":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.9":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.5":"blue","markerColor.6":"blue","icon.10":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.7":"blue","icon.11":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.12":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.13":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.14":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.15":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.16":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.17":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.8":"blue","markerColor.9":"blue","markerColor.10":"blue","icon.18":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.11":"blue","icon.19":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.20":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.12":"blue","markerColor.13":"blue","markerColor.14":"blue","icon.21":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.22":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.23":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.24":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.25":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.26":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.27":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.28":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.29":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"icon.30":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.15":"blue","icon.31":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"markerColor.16":"blue","markerColor.17":"blue","library":"glyphicon","library.1":"glyphicon","library.2":"glyphicon","icon.32":["cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","cog","cog","cog","arrow-down","cog","cog","arrow-down","arrow-down","cog","arrow-down","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-down","cog","arrow-down","cog","cog","arrow-down","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","cog","arrow-down","arrow-down","arrow-up","arrow-up","arrow-up","arrow-up","cog","arrow-up","arrow-up","arrow-up"],"library.3":"glyphicon","library.4":"glyphicon","library.5":"glyphicon","prefix":"glyphicon"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["0.659","0.745","0.936","1.13","0.66","1.19","1.01","1.12","0.92","0.7425","0.7","0.8125","0.755","0.75","0.76","1.04","2.0825","1.21","0.825","0.78","0.7","1.28","0.78","0.9","0.945","0.99","1.32","0.955","0.92","1.185","0.8771","1","1.36","0.83","0.68","0.87","0.75","0.82","1","0.665","0.67","0.615","0.575","0.53","0.51775","0.475","0.985","0.615","2.325","2.445","0.5725","0.565","0.5475","0.6525","0.80375","0.55","0.515","0.49"],null,null,null,["0.659","0.745","0.936","1.13","0.66","1.19","1.01","1.12","0.92","0.7425","0.7","0.8125","0.755","0.75","0.76","1.04","2.0825","1.21","0.825","0.78","0.7","1.28","0.78","0.9","0.945","0.99","1.32","0.955","0.92","1.185","0.8771","1","1.36","0.83","0.68","0.87","0.75","0.82","1","0.665","0.67","0.615","0.575","0.53","0.51775","0.475","0.985","0.615","2.325","2.445","0.5725","0.565","0.5475","0.6525","0.80375","0.55","0.515","0.49"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[27.67377096,28.174032],"lng":[-82.82751687,-82.58965034]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="chlorophyll-a-map-results" class="section level2">
+<h2>Chlorophyll a Map Results</h2>
+<div id="htmlwidget-081008b541b100770133" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-081008b541b100770133">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[28.157197,28.174032,28.111719,28.140872,28.086325,28.068168,28.068488,28.033754,28.046586,28.0373,28.020439,28.014891,27.996813,28.002573,27.979585,27.974373,27.990174,27.943531,27.940683,27.971475,27.928133,27.950451,27.940403,27.938397,27.927122,27.923225,27.915657,27.907501,27.839032,27.911902,27.871178,27.850126,27.892915,27.891048,27.91596,27.880067,27.824248,27.80992,27.813779,27.803728,28.00106672,27.9442479,27.9269901,27.89513168,27.85753274,27.80925792,27.72962857,28.11835125,27.84209776,27.87825759,27.85242489,28.11080443,28.01435705,27.93297393,27.82897097,27.82634241,27.79184557,27.73816426,27.67377096],[-82.757037,-82.723492,-82.761506,-82.639453,-82.694148,-82.722861,-82.768836,-82.780066,-82.759151,-82.703731,-82.690019,-82.698876,-82.694027,-82.721708,-82.69525,-82.71359,-82.783999,-82.805969,-82.801349,-82.78153,-82.745983,-82.754343,-82.759796,-82.750888,-82.738439,-82.717813,-82.725143,-82.676053,-82.752199,-82.700352,-82.729363,-82.772943,-82.807484,-82.824898,-82.808897,-82.809457,-82.731661,-82.720528,-82.695728,-82.72412,-82.67290744,-82.70291824,-82.65651787,-82.61283014,-82.58965034,-82.59338409,-82.62286673,-82.7226789,-82.60918525,-82.77575324,-82.78080972,-82.80745512,-82.80655922,-82.82751687,-82.8191972,-82.76524298,-82.77017169,-82.73051748,-82.70547245],{"icon":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.1":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.2":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.3":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.4":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.5":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"markerColor":"blue","icon.6":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.7":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.8":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.9":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.10":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.11":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.12":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.13":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"library":"glyphicon","icon.14":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"library.1":"glyphicon","icon.15":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.16":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.17":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"markerColor.1":"blue","markerColor.2":"blue","icon.18":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.19":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.20":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.21":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.22":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.23":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.24":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.25":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"library.2":"glyphicon","icon.26":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"markerColor.3":"blue","icon.27":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.28":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"library.3":"glyphicon","library.4":"glyphicon","library.5":"glyphicon","icon.29":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.30":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.31":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.32":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.33":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.34":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.35":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.36":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.37":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"markerColor.4":"blue","markerColor.5":"blue","library.6":"glyphicon","library.7":"glyphicon","icon.38":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.39":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.40":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.41":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.42":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"icon.43":["cog","cog","cog","cog","cog","cog","arrow-down","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-up","cog","cog","cog","arrow-down","arrow-down","cog","cog","cog","cog","cog","cog","cog","cog","arrow-up","cog","arrow-down","cog","cog","arrow-up","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog","cog","cog","cog","arrow-down","arrow-down","arrow-up","arrow-up","cog","cog","cog","cog","cog","cog"],"prefix":"glyphicon"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["2.7","5.3","23.6","2.9","1.65","0.9","1.4","6.6","2.3","1.6","2.35","1.1","4.05","3.15","15.3","6.15","2.8","3.95","3.8","2.6","14","1.8","1.6","1.5","1.8","1.45","4.5","13.2","13.025","6.7","16.25","18.775","12.5","2.55","1.85","4.7","3.1","5.2","14.9","3.9","6.95","8.6","6.05","6.25","4.95","4.4","3.8","22.4","7.2625","70.4","88.025","1.925","4.15","5.2","8.15","9.175","6.1","5.625","4.25"],null,null,null,["2.7","5.3","23.6","2.9","1.65","0.9","1.4","6.6","2.3","1.6","2.35","1.1","4.05","3.15","15.3","6.15","2.8","3.95","3.8","2.6","14","1.8","1.6","1.5","1.8","1.45","4.5","13.2","13.025","6.7","16.25","18.775","12.5","2.55","1.85","4.7","3.1","5.2","14.9","3.9","6.95","8.6","6.05","6.25","4.95","4.4","3.8","22.4","7.2625","70.4","88.025","1.925","4.15","5.2","8.15","9.175","6.1","5.625","4.25"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[27.67377096,28.174032],"lng":[-82.82751687,-82.58965034]}},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
