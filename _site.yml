@@ -6,3 +6,6 @@ navbar:
       href: index.html
     - text: "Trends"
       href: Trends.html
+output_dir: "."
+
+
