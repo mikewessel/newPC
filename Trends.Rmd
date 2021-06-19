@@ -1,0 +1,126 @@
+---
+title: "Trends"
+author: "Mike Wessel"
+date: "6/19/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## NOTE: THIS IS AN EXPERIENTAL TEST SITE AND IS NOT TO BE INTERPRETED AS A FINAL RESULT
+
+## Background
+
+These maps display results of Seasonal Kendall Tau trend test with autocorrelation on Pinellas County water quality data and uses the Benjamini and Hochberg method to adjust for multiple comparions within each water quality parameter set. 
+```{r setup, message = FALSE}
+## Load Libraries
+library(tidyverse)
+library(dplyr)
+library(sf)
+library(ggspatial) # north arrow and scale bar for map
+library(mapview)
+library(leaflet)
+library(webshot)
+#install.packages("webshot")
+#webshot::install_phantomjs()
+#tinytex::install_tinytex()
+
+
+```
+
+
+
+```{r}
+# get working directory
+getwd() 
+
+# Clear workspace 
+rm(list = ls())
+```
+## Total Nitrogen Map Results
+
+```{r tn}
+#  Read in Trend results from trend tests
+
+PC_trends_full_join<- readRDS(file = "PC_trends_full_join.Rds")
+trends<-PC_trends_full_join  
+
+
+ m<-trends%>%
+    filter(stas=="TN")%>%
+      mutate( Group = case_when(
+    final_est == "Not" ~ 1,
+    final_est == "Increasing" ~ 2,
+    final_est == "Decreasing" ~ 3),
+        icon = case_when(
+         Group == 1 ~ "cog",
+         Group == 2 ~ "arrow-up",
+         Group == 3 ~ "arrow-down"),
+        )
+
+# https://fontawesome.com/v5.15/icons?d=gallery&p=3
+# create awesome icons
+my_icons <- awesomeIcons(icon = m$icon, library = "glyphicon")
+ 
+ 
+  mm<- leaflet(m)%>%
+      addProviderTiles(providers$OpenStreetMap) %>%
+   #   addCircleMarkers(lng = ~ Longitude, lat = ~ Latitude, color = "blue", fillColor = "blue", opacity = 0.5, radius = 15, fillOpacity = 0.5) %>% 
+      addAwesomeMarkers(lng = ~ Longitude, lat = ~ Latitude, icon = ~ my_icons[Group],            popup=~as.character(grand_med),label = ~as.character(grand_med) )
+     
+ mm
+ 
+ # to get rid of pin marker i think you need to specify an html makrer
+ # https://rstudio.github.io/leaflet/markers.html
+ 
+ # or look at this and download PhantomJS
+ # https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/leaflet-r/
+
+```
+ 
+ 
+## Chlorophyll a Map Results
+
+```{r chla}
+#  Read in Trend results from trend tests
+
+PC_trends_full_join<- readRDS(file = "PC_trends_full_join.Rds")
+trends<-PC_trends_full_join  
+
+
+ m<-trends%>%
+    filter(stas=="Chl_a")%>%
+      mutate( Group = case_when(
+    final_est == "Not" ~ 1,
+    final_est == "Increasing" ~ 2,
+    final_est == "Decreasing" ~ 3),
+        icon = case_when(
+         Group == 1 ~ "cog",
+         Group == 2 ~ "arrow-up",
+         Group == 3 ~ "arrow-down"),
+        )
+
+# https://fontawesome.com/v5.15/icons?d=gallery&p=3
+# create awesome icons
+my_icons <- awesomeIcons(icon = m$icon, library = "glyphicon")
+ 
+ 
+  mm<- leaflet(m)%>%
+      addProviderTiles(providers$OpenStreetMap) %>%
+   #   addCircleMarkers(lng = ~ Longitude, lat = ~ Latitude, color = "blue", fillColor = "blue", opacity = 0.5, radius = 15, fillOpacity = 0.5) %>% 
+      addAwesomeMarkers(lng = ~ Longitude, lat = ~ Latitude, icon = ~ my_icons[Group],            popup=~as.character(grand_med),label = ~as.character(grand_med) )
+     
+ mm
+ 
+ # to get rid of pin marker i think you need to specify an html makrer
+ # https://rstudio.github.io/leaflet/markers.html
+ 
+ # or look at this and download PhantomJS
+ # https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/leaflet-r/
+
+```

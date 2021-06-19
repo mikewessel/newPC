@@ -1,0 +1,8 @@
+name: "PC Trends"
+navbar:
+  title: "PC Trends 2021"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Trends"
+      href: Trends.html
